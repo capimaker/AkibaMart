@@ -8,14 +8,18 @@ const Product = () => {
     getProducts(); //en el useContext se guardarán las tareas al ejecutar getProducts
   }, []);
 
-  const product = products.map((product) => { //renderizamos cada una de los productos
+  const productList = products.map((product) => { //renderizamos cada una de los productos
     return (
       <div className="product" key={product._id}>
         <h3>{product.name}</h3>
+        <img
+        src ={product.image}
+        style = {{width:"200px", height:"auto"}}
+        />
       </div>
     );
   });
-  return <>{product}</>;
+  return <>{productList}</>;
 };
 
 export default Product;
