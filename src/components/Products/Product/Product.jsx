@@ -12,6 +12,7 @@ const Product = () => {
     return (
       <div className="product" key={product._id}>
         <h3>{product.name}</h3>
+        <p>Precio: ${product.price}</p>
         <img
         src ={product.image}
         style = {{width:"200px", height:"auto"}}
