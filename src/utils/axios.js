@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const axios = axios.create({
+const api = axios.create({
   baseURL: "https://akibapi.onrender.com",
   headers: {
     "Content-Type": "application/json"
   }
 });
 
-export default axios;
+export default api;

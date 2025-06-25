@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "../utils/axios";
+import api from "../utils/axios";
 import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
@@ -8,9 +8,11 @@ const Register = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: ""
+  name: "",
+  last_name: "",
+  email: "",
+  password: "",
+  adress: ""
   });
 
   const [error, setError] = useState("");
@@ -26,7 +28,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("/users/register", formData);
+      const res = await api.post("/users", formData);
       const { user, token } = res.data;
 
       register(user);
@@ -40,17 +42,28 @@ const Register = () => {
   };
 
   return (
-    <div className="registro">
-      <h1>Registro de usuario</h1>
-      <form onSubmit={handleSubmit} className="submit" >
+    
+     <div style={{ maxWidth: "400px", margin: "3rem auto", padding: "2rem", border: "1px solid #ccc", borderRadius: "10px" }}>
+    <h1 style={{ textAlign: "center" }}>Registro</h1>
+    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
         <input
           type="text"
-          name="username"
-          placeholder="Nombre de usuario"
-          value={formData.username}
+          name="name"
+          placeholder="Nombre"
+          value={formData.name}
           onChange={handleChange}
           required
         />
+
+        <input
+          type="text"
+          name="last_name"
+          placeholder="Apellido"
+          value={formData.last_name}
+          onChange={handleChange}
+          required
+          />
+        
         <input
           type="email"
           name="email"
@@ -67,8 +80,15 @@ const Register = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit">Registrarse</button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+
+        <input
+          type="text"
+          name="adress"
+          value={formData.adress || ""}
+          onChange={handleChange}
+          placeholder="Introduce tu dirección"
+          />
+        <button type="submit" style={{ padding: "0.5rem", background: "black", color: "white", border: "none", borderRadius: "5px" }}>Registrarse</button>
       </form>
     </div>
   );
