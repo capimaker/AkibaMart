@@ -1,42 +1,24 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useUser } from "../context/UserContext";
-import api from "../utils/axios";
+import React, { useState } from "react";
+import { useNavigate }     from "react-router-dom";
+import { useUser } from "../context/UserContext/UserState";
 
 const Login = () => {
   const { login } = useUser();
-  const navigate = useNavigate();
+  const navigate  = useNavigate();
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: ""
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await api.post("/users/login", {
-        email: formData.email,
-        password: formData.password
-      });
-
-      const { user, token } = response.data;
-
-      login(user);
-      localStorage.setItem("token", token);
+      await login(formData);
       navigate("/home");
-
     } catch (error) {
       alert("Error al iniciar sesión: " + (error.response?.data?.msg || "Error inesperado"));
-      console.error(error);
     }
   };
 
@@ -69,4 +51,3 @@ const Login = () => {
 };
 
 export default Login;
-

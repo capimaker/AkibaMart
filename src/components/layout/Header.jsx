@@ -1,12 +1,14 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useUser } from "../../context/UserContext";
+
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser }             from "../../context/UserContext/UserState";
 
 import "./header.css";
 
 const Header = () => {
-  const { user, logout } = useUser();
+  const { token, logout } = useUser();     
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();          
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -20,15 +22,38 @@ const Header = () => {
         </button>
 
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
-          {user ? (
+          {token ? (
             <>
-              <li><Link to="/profile" onClick={() => setIsOpen(false)}>Perfil</Link></li>
-              <li><button onClick={() => { logout(); setIsOpen(false); }} className="logout-btn">Cerrar sesión</button></li>
+              <li>
+                <Link to="/profile" onClick={() => setIsOpen(false)}>
+                  Perfil
+                </Link>
+              </li>
+              <li>
+                <button
+                  className="logout-btn"
+                  onClick={async () => {
+                    await logout();        
+                    setIsOpen(false);
+                    navigate("/home");        
+                  }}
+                >
+                  Cerrar sesión
+                </button>
+              </li>
             </>
           ) : (
             <>
-              <li><Link to="/login" onClick={() => setIsOpen(false)}>Iniciar sesión</Link></li>
-              <li><Link to="/register" onClick={() => setIsOpen(false)}>Registrarse</Link></li>
+              <li>
+                <Link to="/login" onClick={() => setIsOpen(false)}>
+                  Iniciar sesión
+                </Link>
+              </li>
+              <li>
+                <Link to="/register" onClick={() => setIsOpen(false)}>
+                  Registrarse
+                </Link>
+              </li>
             </>
           )}
         </ul>

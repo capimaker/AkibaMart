@@ -1,51 +1,70 @@
-import { useState } from "react";
-import api from "../utils/axios";
-import { useUser } from "../context/UserContext";
+
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../utils/axios"; 
 
 const Register = () => {
-  const { register } = useUser();
+  
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-  name: "",
-  last_name: "",
-  email: "",
-  password: "",
-  adress: ""
+    name:      "",
+    last_name: "",
+    email:     "",
+    password:  "",
+    adress:    "",
   });
 
+  
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
+  
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
 
     try {
-      const res = await api.post("/users", formData);
-      const { user, token } = res.data;
-
-      register(user);
-      localStorage.setItem("token", token);
-      navigate("/home");
-
+      
+      await api.post("/users", formData);
+      
+      
+      navigate("/login");
     } catch (err) {
-      console.error(err);
-      setError(err.response?.data?.msg || "Error al registrarse");
+      
+      console.error("Error al registrarse:", err);
+      setError(err.response?.data?.message || "Error inesperado");
     }
   };
 
+  
   return (
-    
-     <div style={{ maxWidth: "400px", margin: "3rem auto", padding: "2rem", border: "1px solid #ccc", borderRadius: "10px" }}>
-    <h1 style={{ textAlign: "center" }}>Registro</h1>
-    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <div style={{
+      maxWidth: "400px",
+      margin:   "3rem auto",
+      padding:  "2rem",
+      border:   "1px solid #ccc",
+      borderRadius: "10px"
+    }}>
+      <h1 style={{ textAlign: "center" }}>Registro</h1>
+
+      
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          display:       "flex",
+          flexDirection: "column",
+          gap:           "1rem"
+        }}
+      >
+        
         <input
           type="text"
           name="name"
@@ -58,12 +77,12 @@ const Register = () => {
         <input
           type="text"
           name="last_name"
-          placeholder="Apellido"
+          placeholder="Apellidos"
           value={formData.last_name}
           onChange={handleChange}
           required
-          />
-        
+        />
+
         <input
           type="email"
           name="email"
@@ -72,6 +91,7 @@ const Register = () => {
           onChange={handleChange}
           required
         />
+
         <input
           type="password"
           name="password"
@@ -84,14 +104,28 @@ const Register = () => {
         <input
           type="text"
           name="adress"
-          value={formData.adress || ""}
+          placeholder="Dirección"
+          value={formData.adress}
           onChange={handleChange}
-          placeholder="Introduce tu dirección"
-          />
-        <button type="submit" style={{ padding: "0.5rem", background: "black", color: "white", border: "none", borderRadius: "5px" }}>Registrarse</button>
+        />
+
+        
+        <button
+          type="submit"
+          style={{
+            padding:       "0.5rem",
+            background:    "black",
+            color:         "white",
+            border:        "none",
+            borderRadius:  "5px"
+          }}
+        >
+          Registrarse
+        </button>
       </form>
     </div>
   );
 };
+
 
 export default Register;
