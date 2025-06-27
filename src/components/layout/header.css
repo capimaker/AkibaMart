@@ -1,0 +1,60 @@
+
+.header {
+  padding: 1rem;
+  background-color: #111;
+  color: #5c5a5a;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 1rem;
+}
+
+.navbar a:first-child {
+  margin-left: 0;
+}
+
+/* Nuevo: botón de menú hamburguesa */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 1rem;
+    background-color: #111;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 0;
+  }
+}
