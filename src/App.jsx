@@ -8,6 +8,7 @@ import Header from "./components/layout/Header";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./context/UserContext/UserState";
 import Products from "./components/Products/Products";
+import ProductDetail  from "./pages/ProductDetail"; 
 import { ProductProvider} from "./context/ProductContext/ProductState";
 
 
@@ -30,6 +31,7 @@ function App() {
                   <Route path="/register" element={<Register />}/>
               <Route path="/login" element={<Login />}/>
               <Route path="/products" element={<Products />} />
+              <Route path="/products/:id" element={<ProductDetail />}/>
                {/*} <Route path="/cart" element={<Cart />} />*/}
             </Routes>
       </ProductProvider>

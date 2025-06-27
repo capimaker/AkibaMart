@@ -54,8 +54,9 @@ const Product = () => {
       ) : (
         <div className="product-list">
           {filteredProducts.map((p) => {
-          
-            const imgSrc = p.image.startsWith("http")
+               // Detectar con regex si es url absoluta
+            const isAbsolute = /^https?:\/\//i.test(p.image);
+            const imgSrc = isAbsolute
               ? p.image
               : `${API_BASE}${p.image.startsWith("/") ? "" : "/"}${p.image}`;
 
