@@ -5,8 +5,10 @@ import ProductReducer from './ProductReducer';
 const initialState = {
     products: [],
     product: {},
-
+    cart: [],
 };
+
+
 
 export const ProductContext = createContext(initialState);//definimos contexto
 
@@ -21,11 +23,19 @@ const getProducts = async () => {
     });
 }
 
+const addCart = (product) => {
+    dispatch({
+        type: "ADD_CART",
+        payload:product,
+    });
+};
+
 return (
-    <ProductContext.Provider
+    <ProductContext.Provider // hacemos global el estado de ProductContext, para que los children tengan acceso
     value = {{
         products:state.products,
         getProducts,
+        addCart
     }}>
         {children}
     </ProductContext.Provider>

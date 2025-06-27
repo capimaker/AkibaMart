@@ -61,4 +61,20 @@ const Product = () => {
   );
 };
 
+//incorporado para hacer el cart: 
+
+const product = products.map ((product) => {
+    return (
+      <div key = {product._id}>
+        <span> {product.name}</span>
+        <span> {product.price.toFixed(2)}</span> {/*formatea el precio para convertirlo en string y que tenga dos cifras decimales */}
+        <button onClick = {() => addCart(product)}>Add Cart</button>
+      </div>
+    );
+  });
+  return <div>{product}</div>
+
+  //fin del código necesari para cart
+
+
 export default Product;
