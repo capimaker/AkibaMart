@@ -1,63 +1,81 @@
-import { useContext, useEffect, useState } from "react";
+
+import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../../context/ProductContext/ProductState";
 import { Link } from "react-router-dom";
 
+const API_BASE = "https://akibapi.onrender.com";
+
 const Product = () => {
-  const { products, getProducts } = useContext(ProductContext); //usamos useContext para traernos el contexto de tareas que hemos creado
-  const [search, setSearch] = useState(""); //usamos useState para las búsquedas del buscador
+  const { products, getProducts } = useContext(ProductContext);
+  const [search, setSearch] = useState("");
   const [maxPrice, setMaxPrice] = useState(80);
 
+  
   useEffect(() => {
-    getProducts(); //en el useContext se guardarán las tareas al ejecutar getProducts
-  }, []);
+    getProducts();
+  }, [getProducts]);
 
-  const filteredProducts = products.filter((product) => {
-    const term = search.toLowerCase(); //.toLowerCase hace que la búsqueda no sea case sensitive
-    const nameMatch = product.name.toLowerCase().includes(term);
-    const categoryMatch = product.categories.some(
-      (
-        category //el .some es un método que recorre el array y devuelve true si al menos un elemento cumple la
-      ) =>
-        //condición que le pasamos. Necesitamos .some porque las categorías son arrays de objetos en la API, mientras que el name en la API es un simple string y por eso
-        // podemos usar .includes.
-        category.name.toLowerCase().includes(term)
+  
+  const filteredProducts = products.filter((p) => {
+    const term  = search.toLowerCase();
+    const nameMatch = p.name.toLowerCase().includes(term);
+    const categoryMatch = p.categories?.some((c) =>
+      c.name.toLowerCase().includes(term)
     );
-    const priceMatch = product.price <= maxPrice;
-
+    const priceMatch = p.price <= maxPrice;
     return (nameMatch || categoryMatch) && priceMatch;
   });
 
   return (
-    <>
+    <div>
       <input
         type="text"
         placeholder="Buscar por nombre o categoría"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{ marginBottom: "10px", padding: "5px", display:"block" }}
+        style={{ marginBottom: "10px", padding: "5px", display: "block" }}
       />
 
-      <label htmlFor="price">Precio máximo:  €{maxPrice}</label>
-      <input 
-        type="range" //este rango nos permite establecer un precio mínimo
+      <label htmlFor="price">Precio máximo: €{maxPrice}</label>
+      <input
+        type="range"
         id="price"
         min="0"
         max="80"
         step="1"
         value={maxPrice}
-        onChange={(e) => setMaxPrice (Number(e.target.value))}
-        style = {{ marginBottom: "20px", display:"block"}}
-        />
+        onChange={(e) => setMaxPrice(Number(e.target.value))}
+        style={{ marginBottom: "20px", display: "block" }}
+      />
 
 
-      {filteredProducts.map((product) => (
-        <div className="product" key={product._id}>
-          <h3>{product.name}</h3>
-          <p>Precio: €{product.price}</p>
-          <img src={product.image} style={{ width: "200px", height: "auto" }} />
+      {filteredProducts.length === 0 ? (
+        <p>No se encontraron productos para esos criterios.</p>
+      ) : (
+        <div className="product-list">
+          {filteredProducts.map((p) => {
+          
+            const imgSrc = p.image.startsWith("http")
+              ? p.image
+              : `${API_BASE}${p.image.startsWith("/") ? "" : "/"}${p.image}`;
+
+            return (
+              <div className="product" key={p._id}>
+                <Link to={`/products/${p._id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                  <h3>{p.name}</h3>
+                  <img
+                    src={imgSrc}
+                    alt={p.name}
+                    style={{ width: "200px", height: "auto", cursor: "pointer" }}
+                  />
+                </Link>
+                <p>Precio: €{p.price}</p>
+              </div>
+            );
+          })}
         </div>
-      ))}
-    </>
+      )}
+    </div>
   );
 };
 
@@ -75,6 +93,7 @@ const product = products.map ((product) => {
   return <div>{product}</div>
 
   //fin del código necesari para cart
+
 
 
 export default Product;
