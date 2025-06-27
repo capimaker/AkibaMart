@@ -7,7 +7,7 @@ const API_BASE = "https://akibapi.onrender.com";
 
 const Product = () => {
   const { products, getProducts } = useContext(ProductContext);
-  const [search,   setSearch]   = useState("");
+  const [search, setSearch] = useState("");
   const [maxPrice, setMaxPrice] = useState(80);
 
   
