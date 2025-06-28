@@ -1,4 +1,5 @@
 {/*import AddProduct from "./AddProduct/AddProduct"; Necesario si sólo hacemos el CRUD*/}
+
 import Product from "./Product/Product";
 
 const Products = () => {
@@ -12,3 +13,5 @@ const Products = () => {
 };
 
 export default Products;
+
+

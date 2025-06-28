@@ -1,43 +1,46 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import PrivateRoute from "./components/routes/PrivateRoute";
 import Header from "./components/layout/Header";
-import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./context/UserContext/UserState";
 import Products from "./components/Products/Products";
 import ProductDetail  from "./pages/ProductDetail"; 
-import { ProductProvider} from "./context/ProductContext/ProductState";
-
-
+import { ProductProvider } from "./context/ProductContext/ProductState";
+import Cart from "./components/Cart/Cart";
+//import ProductDetail from "./components/Products/ProductDetail";
 
 function App() {
-
   return (
-    <>
+    <div className="App">
       <BrowserRouter>
         <UserProvider>
-        <ProductProvider>
-            <Header />
-            <Routes>
-              <Route path="/home" element={<Home />} />
-              <Route path="/profile" element={
-                <PrivateRoute>
-                  <Profile />
-                  </PrivateRoute>
-                  } />
-                  <Route path="/register" element={<Register />}/>
-              <Route path="/login" element={<Login />}/>
-              <Route path="/products" element={<Products />} />
-              <Route path="/products/:id" element={<ProductDetail />}/>
-               {/*} <Route path="/cart" element={<Cart />} />*/}
-            </Routes>
-      </ProductProvider>
+          <ProductProvider>
+              <Header />
+              <Routes>
+                <Route path="/products" element={<Products />} />
+                 <Route path="/products/:id" element={<ProductDetail />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/" element={<Home />} />
+                <Route
+                  path="/profile"
+                  element={
+                    <PrivateRoute>
+                      <Profile />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path="/login" element={<Login />} />
+              </Routes>
+          </ProductProvider>
         </UserProvider>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 

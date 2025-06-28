@@ -6,18 +6,20 @@ import { Link } from "react-router-dom";
 const API_BASE = "https://akibapi.onrender.com";
 
 const Product = () => {
-  const { products, getProducts } = useContext(ProductContext);
+  const { products, getProducts, addCart, cart } = useContext(ProductContext);
   const [search, setSearch] = useState("");
-  const [maxPrice, setMaxPrice] = useState(80);
+  const [maxPrice, setMaxPrice] = useState(35);
 
-  
   useEffect(() => {
     getProducts();
   }, [getProducts]);
 
-  
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   const filteredProducts = products.filter((p) => {
-    const term  = search.toLowerCase();
+    const term = search.toLowerCase();
     const nameMatch = p.name.toLowerCase().includes(term);
     const categoryMatch = p.categories?.some((c) =>
       c.name.toLowerCase().includes(term)
@@ -41,28 +43,28 @@ const Product = () => {
         type="range"
         id="price"
         min="0"
-        max="80"
+        max="35"
         step="1"
         value={maxPrice}
         onChange={(e) => setMaxPrice(Number(e.target.value))}
         style={{ marginBottom: "20px", display: "block" }}
       />
 
-
       {filteredProducts.length === 0 ? (
         <p>No se encontraron productos para esos criterios.</p>
       ) : (
         <div className="product-list">
           {filteredProducts.map((p) => {
-               // Detectar con regex si es url absoluta
-            const isAbsolute = /^https?:\/\//i.test(p.image);
-            const imgSrc = isAbsolute
+            const imgSrc = p.image.startsWith("http")
               ? p.image
               : `${API_BASE}${p.image.startsWith("/") ? "" : "/"}${p.image}`;
 
             return (
               <div className="product" key={p._id}>
-                <Link to={`/products/${p._id}`} style={{ textDecoration: "none", color: "inherit" }}>
+                <Link
+                  to={`/products/${p._id}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
                   <h3>{p.name}</h3>
                   <img
                     src={imgSrc}
@@ -71,6 +73,7 @@ const Product = () => {
                   />
                 </Link>
                 <p>Precio: €{p.price}</p>
+                <button onClick={() => addCart(p)}>Agregar al carrito</button>
               </div>
             );
           })}

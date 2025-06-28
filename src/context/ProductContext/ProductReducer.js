@@ -1,13 +1,23 @@
-const products = (state, action) => {
+const ProductReducer = (state, action) => {
     switch (action.type) {
         case "GET_PRODUCTS":
             return {
-                ...state, 
-                products:action.payload,
+                ...state,
+                products: action.payload,
             };
-            default: 
+        case "ADD_CART":
+            return {
+                ...state,
+                cart:[...state.cart, action.payload],
+            };
+            case "CLEAR_CART":
+                return {
+                    ...state,
+                    cart: [],
+                };
+        default:
             return state;
     }
 };
 
-export default products;
+export default ProductReducer;
