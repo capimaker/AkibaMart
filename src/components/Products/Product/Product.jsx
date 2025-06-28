@@ -10,18 +10,16 @@ const Product = () => {
   const [search, setSearch] = useState("");
   const [maxPrice, setMaxPrice] = useState(35);
 
-  
   useEffect(() => {
     getProducts();
   }, [getProducts]);
 
-  useEffect (() => {
+  useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  
   const filteredProducts = products.filter((p) => {
-    const term  = search.toLowerCase();
+    const term = search.toLowerCase();
     const nameMatch = p.name.toLowerCase().includes(term);
     const categoryMatch = p.categories?.some((c) =>
       c.name.toLowerCase().includes(term)
@@ -29,19 +27,6 @@ const Product = () => {
     const priceMatch = p.price <= maxPrice;
     return (nameMatch || categoryMatch) && priceMatch;
   });
-
-  //incorporado para hacer el cart: 
-
-const renderProduct = () => {
-  return products.map((product) => (
-    <div key={product._id}>
-      <span>{product.name}</span>
-      <span>{product.price.toFixed(2)}</span>
-      <button onClick={() => addCart(product)}>Add Cart</button>
-    </div>
-  ));
-};
-  //fin del código necesario para cart
 
   return (
     <div>
@@ -88,14 +73,12 @@ const renderProduct = () => {
                   />
                 </Link>
                 <p>Precio: €{p.price}</p>
+                <button onClick={() => addCart(p)}>Agregar al carrito</button>
               </div>
             );
           })}
         </div>
       )}
-
-      {/* Aquí llamamos a renderProduct para mostrar la lista con el botón Add Cart */}
-      <div className="cart-products">{renderProduct()}</div>
     </div>
   );
 };
