@@ -23,6 +23,7 @@
 
 .barra {
     border-radius: 25px;
+    width: 400px;
 }
 
 .search-icon{
@@ -40,6 +41,7 @@
     padding: 15px;
     gap: 10px;
 }
+
 .header__icons a {
   color: #e0e1d5;
   transition: color 0.2s ease;
