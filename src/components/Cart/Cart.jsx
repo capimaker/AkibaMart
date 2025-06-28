@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import {ProductContext} from "../../context/ProductContext/ProductState";
-import orderService from "../../components/Services/OrderService";
+import orderService from "../../services/OrderService";
 
 
 const Cart = () => {
@@ -12,10 +12,11 @@ const Cart = () => {
     
     }
 
-    const createNewOrder = () => {
-        createOrder(cart);
-        clearCart();
-    };
+  const createNewOrder = async () => {
+    await orderService.createOrder(cart); 
+    clearCart();
+  };
+
 
     const cartItem = cart.map((cartItem, i) => {
         return (
