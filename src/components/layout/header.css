@@ -1,25 +1,64 @@
-
 .header {
-  padding: 1rem;
-  background-color: #111;
-  color: #5c5a5a;
+    position: relative;
+    height: 100px;
+    background-color: #17352f ;
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.navbar a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: bold;
-  margin-left: 1rem;
+.logo img {
+    height: 100px;
 }
 
-.navbar a:first-child {
-  margin-left: 0;
+.header__search {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 35px;
+}
+
+.barra {
+    border-radius: 25px;
+}
+
+.search-icon{
+    position: absolute;
+    color: #e0e1d5;
+    right: 42%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.header__icons {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 40px;
+    padding: 15px;
+    gap: 10px;
+}
+.header__icons a {
+  color: #e0e1d5;
+  transition: color 0.2s ease;
+}
+
+.header__icons a:hover {
+  color: #60c7a1;
+}
+
+.Cart__icon, .logout__icon{
+   display: flex;
+    justify-content: flex-end;
+    font-size: 40px;
+    gap: 10px;
+    color: #e0e1d5;
+}
+
+.Cart__icon :hover, .logout__icon :hover {
+  color: #60c7a1;
 }
 
 /* Nuevo: botón de menú hamburguesa */
