@@ -36,7 +36,7 @@ function App() {
                 />
                 <Route path="/login" element={<Login />} />
               </Routes>
-              <Products />
+              {/* <Products /> */}
           </ProductProvider>
         </UserProvider>
       </BrowserRouter>

@@ -1,6 +1,7 @@
-import React, {createContext, useReducer} from 'react';
+import React, {createContext, useReducer, useEffect} from 'react';
 import axios from 'axios';
 import ProductReducer from './ProductReducer';
+
 
 let cart = [];
 try {
@@ -20,8 +21,14 @@ const initialState = {
 
 export const ProductContext = createContext(initialState);//definimos contexto
 
+
 export const ProductProvider = ({children }) => {
     const [state, dispatch] = useReducer(ProductReducer, initialState); //inicializamos reducer
+
+    
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(state.cart));
+  }, [state.cart]);
 
 const getProducts = async () => {
     const res = await axios.get("https://akibapi.onrender.com/products");

@@ -1,20 +1,21 @@
 import {useContext} from "react";
 import {ProductContext} from "../../context/ProductContext/ProductState";
-import React, { useEffect } from "react";
+
 
 
 const Cart = () => {
     const { cart, clearCart} = useContext (ProductContext);
-
-useEffect (() => {
-    localStorage.setItem ("cart", JSON.stringify(cart));
-}, [cart]);
 
 
     if (cart.length <= 0) {
         return <span> No tienes ningún producto añadido en el carrito</span>;
     
     }
+
+    const createNewOrder = () => {
+        createOrder(cart);
+        clearCart();
+    };
 
     const cartItem = cart.map((cartItem, i) => {
         return (
@@ -28,6 +29,7 @@ useEffect (() => {
         <div>
             {cartItem}
             <button onClick ={() => clearCart()}> Clear Cart </button>
+            <button onClick = {() => createNewOrder()}>Create Order </button>
         </div>
     );
 };
