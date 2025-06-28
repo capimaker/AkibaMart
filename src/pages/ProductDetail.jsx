@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { ProductContext } from "../context/ProductContext/ProductState";
 import api from "../utils/axios";
 
 const API_BASE = "https://akibapi.onrender.com";
 
-export default function ProductDetail() {
+const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+
+  const { addCart } = useContext(ProductContext); 
 
   useEffect(() => {
     api.get(`/products/${id}`)
@@ -31,19 +34,22 @@ export default function ProductDetail() {
       <p><strong>Precio:</strong> €{product.price}</p>
       <p><strong>Categorías:</strong> {product.categories?.map(c => c.name).join(", ")}</p>
       <p>{product.description}</p>
-        <button
-       onClick={() => addToCart(product)}
-       style={{
-         padding:      "0.75rem 1.5rem",
-         marginTop:    "1rem",
-        background:   "#28a745",
-         color:        "#fff",
-         border:       "none",
-         borderRadius: "5px",
-         cursor:       "pointer"
-       }} >
-       Añadir al carrito
-     </button>
+      <button
+        onClick={() => addCart(product)} 
+        style={{
+          padding: "0.75rem 1.5rem",
+          marginTop: "1rem",
+          background: "#28a745",
+          color: "#fff",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer"
+        }}
+      >
+        Añadir al carrito
+      </button>
     </div>
   );
-}
+};
+
+export default ProductDetail;
