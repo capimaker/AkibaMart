@@ -11,6 +11,7 @@ import Products from "./components/Products/Products";
 import ProductDetail  from "./pages/ProductDetail"; 
 import { ProductProvider } from "./context/ProductContext/ProductState";
 import Cart from "./components/Cart/Cart";
+import Footer from './components/layout/Footer'
 //import ProductDetail from "./components/Products/ProductDetail";
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
                 />
                 <Route path="/login" element={<Login />} />
               </Routes>
+              <Footer />
           </ProductProvider>
         </UserProvider>
       </BrowserRouter>
