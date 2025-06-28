@@ -1,14 +1,16 @@
-
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useUser }             from "../../context/UserContext/UserState";
-
+import { useUser } from "../../context/UserContext/UserState";
 import "./header.css";
+import { ProductContext } from "../../context/ProductContext/ProductState";
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import { Badge } from "antd";
 
 const Header = () => {
   const { token, logout } = useUser();     
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();          
+  const navigate = useNavigate();  
+  const { cart } = useContext(ProductContext);        
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -22,6 +24,19 @@ const Header = () => {
         </button>
 
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
+          <li>
+            <Link to="/products" onClick={() => setIsOpen(false)}>
+              Products
+            </Link>
+          </li>
+          <li>
+            <Link to="/cart" onClick={() => setIsOpen(false)}>
+              <Badge count={cart?.length || 0} offset={[5, -5]}>
+                <ShoppingCartOutlined style={{ fontSize: "20px" }} />
+              </Badge>
+            </Link>
+          </li>
+
           {token ? (
             <>
               <li>
@@ -30,16 +45,16 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <button
-                  className="logout-btn"
+                <span
                   onClick={async () => {
-                    await logout();        
+                    await logout();
                     setIsOpen(false);
-                    navigate("/home");        
+                    navigate("/home");
                   }}
+                  style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
                 >
-                  Cerrar sesión
-                </button>
+                  Logout
+                </span>
               </li>
             </>
           ) : (
@@ -63,3 +78,4 @@ const Header = () => {
 };
 
 export default Header;
+

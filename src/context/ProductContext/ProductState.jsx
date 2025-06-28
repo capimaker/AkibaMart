@@ -2,10 +2,12 @@ import React, {createContext, useReducer} from 'react';
 import axios from 'axios';
 import ProductReducer from './ProductReducer';
 
+const cart = JSON.parse (localStorage.getItem("cart")) || [];
+
 const initialState = {
     products: [],
     product: {},
-    cart: [],
+    cart: cart
 };
 
 
@@ -30,12 +32,19 @@ const addCart = (product) => {
     });
 };
 
+const clearCart = () => {
+    dispatch ({
+        type:"CLEAR_CART",
+    });
+};
+
 return (
     <ProductContext.Provider // hacemos global el estado de ProductContext, para que los children tengan acceso
     value = {{
         products:state.products,
         getProducts,
-        addCart
+        addCart, 
+        clearCart
     }}>
         {children}
     </ProductContext.Provider>

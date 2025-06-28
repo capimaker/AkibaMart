@@ -1,6 +1,11 @@
 import {useContext} from "react";
 import {ProductContext} from "../../context/ProductContext/ProductState";
 
+useEffect (() => {
+    localStorage.setItem ("cart", JSON.stringify(cart));
+}, [cart]);
+
+
 const Cart = () => {
     const { cart} = useContext (ProductContext);
 
@@ -20,6 +25,7 @@ const Cart = () => {
     return (
         <div>
             {cartItem}
+            <button onClick ={() => clearCart()}> Clear Cart </button>
         </div>
     );
 };
