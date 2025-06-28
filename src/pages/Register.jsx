@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../utils/axios"; 
+import './Register.css'
 
 const Register = () => {
   
@@ -44,13 +45,8 @@ const Register = () => {
 
   
   return (
-    <div style={{
-      maxWidth: "400px",
-      margin:   "3rem auto",
-      padding:  "2rem",
-      border:   "1px solid #ccc",
-      borderRadius: "10px"
-    }}>
+    <div className='register__background'>
+    <div className="register__container">
       <h1 style={{ textAlign: "center" }}>Registro</h1>
 
       
@@ -58,14 +54,11 @@ const Register = () => {
 
       <form
         onSubmit={handleSubmit}
-        style={{
-          display:       "flex",
-          flexDirection: "column",
-          gap:           "1rem"
-        }}
+        className="register__form"
       >
         
         <input
+         className="form"
           type="text"
           name="name"
           placeholder="Nombre"
@@ -75,6 +68,7 @@ const Register = () => {
         />
 
         <input
+         className="form"
           type="text"
           name="last_name"
           placeholder="Apellidos"
@@ -84,6 +78,7 @@ const Register = () => {
         />
 
         <input
+         className="form"
           type="email"
           name="email"
           placeholder="Correo electrónico"
@@ -93,6 +88,7 @@ const Register = () => {
         />
 
         <input
+         className="form"
           type="password"
           name="password"
           placeholder="Contraseña"
@@ -102,6 +98,7 @@ const Register = () => {
         />
 
         <input
+         className="form"
           type="text"
           name="adress"
           placeholder="Dirección"
@@ -112,17 +109,12 @@ const Register = () => {
         
         <button
           type="submit"
-          style={{
-            padding:       "0.5rem",
-            background:    "black",
-            color:         "white",
-            border:        "none",
-            borderRadius:  "5px"
-          }}
+          className="register__button"
         >
           Registrarse
         </button>
       </form>
+    </div>
     </div>
   );
 };
