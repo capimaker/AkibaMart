@@ -1,16 +1,18 @@
 import {useContext} from "react";
 import {ProductContext} from "../../context/ProductContext/ProductState";
+import React, { useEffect } from "react";
+
+
+const Cart = () => {
+    const { cart, clearCart} = useContext (ProductContext);
 
 useEffect (() => {
     localStorage.setItem ("cart", JSON.stringify(cart));
 }, [cart]);
 
 
-const Cart = () => {
-    const { cart} = useContext (ProductContext);
-
     if (cart.length <= 0) {
-        return <span> No tienes nngún producto añadido en el carrito</span>;
+        return <span> No tienes ningún producto añadido en el carrito</span>;
     
     }
 

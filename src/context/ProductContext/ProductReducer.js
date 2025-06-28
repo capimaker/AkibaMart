@@ -1,4 +1,4 @@
-const products = (state, action) => {
+const ProductReducer = (state, action) => {
     switch (action.type) {
         case "GET_PRODUCTS":
             return {
@@ -8,7 +8,7 @@ const products = (state, action) => {
         case "ADD_CART":
             return {
                 ...state,
-                cart:[action.payload, ...state.cart],
+                cart:[...state.cart, action.payload],
             };
             case "CLEAR_CART":
                 return {
@@ -20,4 +20,4 @@ const products = (state, action) => {
     }
 };
 
-export default products;
+export default ProductReducer;

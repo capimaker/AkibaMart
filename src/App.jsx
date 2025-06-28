@@ -9,6 +9,8 @@ import Header from "./components/layout/Header";
 import { UserProvider } from "./context/UserContext/UserState";
 import Products from "./components/Products/Products";
 import { ProductProvider } from "./context/ProductContext/ProductState";
+import Cart from "./components/Cart/Cart";
+import ProductDetail from "./components/Products/ProductDetail";
 
 function App() {
   return (
@@ -16,13 +18,14 @@ function App() {
       <BrowserRouter>
         <UserProvider>
           <ProductProvider>
-            <Router>
               <Header />
               <Routes>
                 <Route path="/products" element={<Products />} />
+                 <Route path="/products/:id" element={<ProductDetail />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/home" element={<Home />} />
+                <Route path="/" element={<Home />} />
                 <Route
                   path="/profile"
                   element={
@@ -34,10 +37,11 @@ function App() {
                 <Route path="/login" element={<Login />} />
               </Routes>
               <Products />
-            </Router>
           </ProductProvider>
         </UserProvider>
       </BrowserRouter>
     </div>
   );
 }
+
+export default App;

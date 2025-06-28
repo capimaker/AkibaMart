@@ -7,17 +7,19 @@ import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Badge } from "antd";
 
 const Header = () => {
-  const { token, logout } = useUser();     
+  const { token, logout } = useUser();
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();  
-  const { cart } = useContext(ProductContext);        
+  const navigate = useNavigate();
+  const { cart } = useContext(ProductContext);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
     <header className="header">
       <nav className="navbar">
-        <Link to="/home" className="logo">AkibaMart</Link>
+        <Link to="/home" className="logo">
+          AkibaMart
+        </Link>
 
         <button className="menu-toggle" onClick={toggleMenu}>
           ☰
@@ -32,7 +34,7 @@ const Header = () => {
           <li>
             <Link to="/cart" onClick={() => setIsOpen(false)}>
               <Badge count={cart?.length || 0} offset={[5, -5]}>
-                <ShoppingCartOutlined style={{ fontSize: "20px" }} />
+                <span style={{ fontSize: "16px", color: "white" }}>Carrito</span>
               </Badge>
             </Link>
           </li>
@@ -51,7 +53,11 @@ const Header = () => {
                     setIsOpen(false);
                     navigate("/home");
                   }}
-                  style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
+                  style={{
+                    cursor: "pointer",
+                    color: "blue",
+                    textDecoration: "underline",
+                  }}
                 >
                   Logout
                 </span>
@@ -78,4 +84,3 @@ const Header = () => {
 };
 
 export default Header;
-

@@ -8,7 +8,7 @@ const API_BASE = "https://akibapi.onrender.com";
 const Product = () => {
   const { products, getProducts, addCart, cart } = useContext(ProductContext);
   const [search, setSearch] = useState("");
-  const [maxPrice, setMaxPrice] = useState(80);
+  const [maxPrice, setMaxPrice] = useState(35);
 
   
   useEffect(() => {
@@ -58,7 +58,7 @@ const renderProduct = () => {
         type="range"
         id="price"
         min="0"
-        max="80"
+        max="35"
         step="1"
         value={maxPrice}
         onChange={(e) => setMaxPrice(Number(e.target.value))}
