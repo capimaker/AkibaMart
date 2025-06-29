@@ -3,13 +3,13 @@ import axios from "axios";
 const API_URL = "https://akibapi.onrender.com";
 
 const createOrder = async (cart) => {
-  // Extraemos los IDs de los productos del carrito
+  // Extraemos los id de los productos del carrito
   const productIds = cart.map(product => product._id);
 
-  // Obtenemos el token del localStorage
+  
   const token = localStorage.getItem("token");
 
-  // Añadimos "Bearer " al token para cumplir con lo que espera el backend
+  
   const authHeader = `Bearer ${token}`;
 
   try {
@@ -19,9 +19,9 @@ const createOrder = async (cart) => {
       },
     });
 
-    console.log("✅ Pedido creado con éxito");
+    console.log(" Pedido creado con éxito");
   } catch (error) {
-    console.error("❌ Error al crear el pedido:", error.response?.data || error.message);
+    console.error(" Error al crear el pedido:", error.response?.data || error.message);
   }
 };
 

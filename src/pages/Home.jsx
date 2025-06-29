@@ -9,24 +9,24 @@ export default function Home() {
   const { user } = useUser();
   const { products, getProducts } = useContext(ProductContext);
 
-  // Traemos todos los productos al montar
+  
   useEffect(() => {
     getProducts();
   }, [getProducts]);
 
-  // Cogemos solo los primeros 5
+  
   const topFive = products.slice(0, 5);
 
   return (
     <div style={{ padding: "2rem" }}>
-      {/* Saludo personalizado */}
+     
       <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>
         {user
           ? `Bienvenido, ${user.name} a AkibaMart`
           : "Bienvenido a AkibaMart"}
       </h2>
 
-      {/* listado de 5 productos */}
+      
       <div className="home-product-list" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(200px,1fr))", gap: "1rem" }}>
         {topFive.map((p) => (
           <div key={p._id} className="product-card" style={{ border: "1px solid #ccc", padding: "1rem", borderRadius: "8px" }}>
@@ -47,7 +47,7 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Botón para ver todos */}
+      
       <div style={{ textAlign: "center", marginTop: "2rem" }}>
         <Link to="/products">
           <button style={{
