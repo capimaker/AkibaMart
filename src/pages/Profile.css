@@ -27,12 +27,12 @@
     background-color: #e0e1d5;
     border-radius: 25px;
     color: #17352f ;
-    flex-grow: 1;             /* Hace que el contenedor crezca para llenar el espacio disponible */
+    flex-grow: 1; 
     text-align: center;
 }
 
 .loading__profile, .loading__orders {
-display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
