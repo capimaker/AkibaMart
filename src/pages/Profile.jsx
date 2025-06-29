@@ -30,6 +30,8 @@ import api from "../utils/axios";
  return (
    <div style={{ maxWidth: 600, margin: "2rem auto" }}>
      <h1>👤 Perfil de {user.name}</h1>
+     <p><strong>Email:</strong> {user.email}</p>
+      <p><strong>Dirección:</strong> {user.adress || user.address || "No especificada"}</p>
 
       <section style={{ marginTop: "2rem" }}>
        <h2>Mis pedidos</h2>
