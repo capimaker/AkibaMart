@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate }     from "react-router-dom";
 import { useUser } from "../context/UserContext/UserState";
+import './Login.css'
 
 const Login = () => {
   const { login } = useUser();
@@ -23,10 +24,12 @@ const Login = () => {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "3rem auto", padding: "2rem", border: "1px solid #ccc", borderRadius: "10px" }}>
-      <h1 style={{ textAlign: "center" }}>Login</h1>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <div className="login__background">
+    <div className="login__container">
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit} className="login__form">
         <input
+          className="form"
           type="email"
           name="email"
           placeholder="Correo electrónico"
@@ -35,6 +38,7 @@ const Login = () => {
           required
         />
         <input
+          className="form"
           type="password"
           name="password"
           placeholder="Contraseña"
@@ -42,10 +46,11 @@ const Login = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit" style={{ padding: "0.5rem", background: "black", color: "white", border: "none", borderRadius: "5px" }}>
+        <button type="submit" className="form__button">
           Iniciar sesión
         </button>
       </form>
+    </div>
     </div>
   );
 };
