@@ -1,13 +1,17 @@
 .loading {
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     background-color: #17352f;
     color: #e0e1d5;
     width: 250px;
     height: 70px;
     border: none;
     border-radius: 15px;
+    position: absolute;
+    top: 50%;  
+    left: 50%;  
+    transform: translate(-50%, -50%); 
 }
 
 .product__background {

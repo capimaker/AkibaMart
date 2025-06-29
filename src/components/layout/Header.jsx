@@ -45,6 +45,14 @@ const Header = () => {
                 >
                   <FiUserMinus />
                 </span>
+                <Link to="/products" onClick={() => setIsOpen(false)}>
+              <IoBookOutline />
+              </Link>
+          <Link to="/cart" onClick={() => setIsOpen(false)}>
+              <Badge count={cart?.length || 0} offset={[5, -5]}  className="Cart__icon">
+                 <BsCart2 />
+              </Badge>
+              </Link>
             </>
           ) : (
             <>

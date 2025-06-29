@@ -57,23 +57,6 @@ export default function Home() {
           </div>
         ))}
       </div>
-
-      
-      <div style={{ textAlign: "center", marginTop: "2rem" }}>
-        <Link to="/products">
-          <button style={{
-            padding:      "0.75rem 1.5rem",
-            fontSize:     "1rem",
-            background:   "#111",
-            color:        "#fff",
-            border:       "none",
-            borderRadius: "5px",
-            cursor:       "pointer"
-          }}>
-            Ver todos los productos
-          </button>
-        </Link>
-      </div>
       </div>
       </div>
     </>
