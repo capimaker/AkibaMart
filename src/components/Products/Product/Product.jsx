@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../../context/ProductContext/ProductState";
 import { Link } from "react-router-dom";
+import './Product.css';
 
 const API_BASE = "https://akibapi.onrender.com";
 
@@ -29,17 +30,21 @@ const Product = () => {
   });
 
   return (
+    <>
+    <div className="product__container">
     <div>
+      <div className="search__container">
       <input
+        className="search_bar"
         type="text"
         placeholder="Buscar por nombre o categoría"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{ marginBottom: "10px", padding: "5px", display: "block" }}
       />
-
-      <label htmlFor="price">Precio máximo: €{maxPrice}</label>
-      <input
+  
+      <label htmlFor="price" className="search__radio">Precio máximo: €{maxPrice}</label>
+      <input 
+      className="search__radio"
         type="range"
         id="price"
         min="0"
@@ -47,9 +52,8 @@ const Product = () => {
         step="1"
         value={maxPrice}
         onChange={(e) => setMaxPrice(Number(e.target.value))}
-        style={{ marginBottom: "20px", display: "block" }}
       />
-
+    </div>
       {filteredProducts.length === 0 ? (
         <p>No se encontraron productos para esos criterios.</p>
       ) : (
@@ -63,13 +67,11 @@ const Product = () => {
               <div className="product" key={p._id}>
                 <Link
                   to={`/products/${p._id}`}
-                  style={{ textDecoration: "none", color: "inherit" }}
                 >
                   <h3>{p.name}</h3>
                   <img
                     src={imgSrc}
                     alt={p.name}
-                    style={{ width: "200px", height: "auto", cursor: "pointer" }}
                   />
                 </Link>
                 <p>Precio: €{p.price}</p>
@@ -80,6 +82,8 @@ const Product = () => {
         </div>
       )}
     </div>
+    </div>
+    </>
   );
 };
 

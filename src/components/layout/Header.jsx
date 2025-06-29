@@ -25,11 +25,6 @@ const Header = () => {
         <Link to="/home" className="logo">
           <img src={logo} alt="Logo" />
         </Link>
-         <div className="header__search">
-          {/* Conectar con buscador */}
-            <input type="text" placeholder="Busca aquí" className='barra'></input>
-            <IoSearchOutline className="search-icon"/>
-        </div>
 
         <div className={`nav-links ${isOpen ? "open" : ""}`}>
         

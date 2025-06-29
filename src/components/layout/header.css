@@ -14,25 +14,12 @@
     height: 100px;
 }
 
-.header__search {
-    display: flex;
-    justify-content: center;
-    height: 50px;
-    width: 35px;
-}
 
 .barra {
     border-radius: 25px;
     width: 400px;
 }
 
-.search-icon{
-    position: absolute;
-    color: #e0e1d5;
-    right: 42%;
-    top: 50%;
-    transform: translateY(-50%);
-}
 
 .header__icons {
     display: flex;
