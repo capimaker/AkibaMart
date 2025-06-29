@@ -1,4 +1,4 @@
-// src/pages/Profile.jsx
+
 import { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext/UserState";
 import api from "../utils/axios";

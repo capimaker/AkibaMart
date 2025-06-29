@@ -37,7 +37,6 @@ export default function Home() {
     <div>
 
       <div>
-      {/* listado de 5 productos */}
       <div className="home-product-list" >
         {topFive.map((p) => (
           <div key={p._id} className="product-card" >

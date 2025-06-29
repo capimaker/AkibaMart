@@ -3,7 +3,6 @@ import axios from "axios";
 const API_URL = "https://akibapi.onrender.com";
 
 const createOrder = async (cart) => {
-  // Extraemos los id de los productos del carrito
   const productIds = cart.map(product => product._id);
 
   
