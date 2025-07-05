@@ -35,9 +35,9 @@ const ProductDetail = () => {
       <p><strong>Precio:</strong> €{product.price}</p>
       <p><strong>Categorías:</strong> {product.categories?.map(c => c.name).join(", ")}</p>
       <p>{product.description}</p>
-        <button onClick={() => addToCart(product)} >
+        {/* <button onClick={() => addToCart(product)} >
        Añadir al carrito
-     </button>
+     </button> */}
     </div>
     </div>
   );

@@ -59,13 +59,3 @@
     max-width: 400px;
     object-fit: cover;
 }
-
-.product__card button {
-    padding: 0.5rem;
-    background: #c61c0b;
-    color: #e0e1d5;
-    border: none;
-    border-radius: 15px;
-    width: 500px;
-    height: 70px;
-}

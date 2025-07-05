@@ -52,7 +52,6 @@ export default function Home() {
               />
             </Link>
             <p><strong>€{p.price}</strong> 🛒 </p>
-            <button className='buy__button'><strong>Añadir al carrito</strong></button>
           </div>
         ))}
       </div>
