@@ -1,0 +1,13 @@
+.footer {
+    background-color: #17352f ;
+    display: flex;
+    justify-content: center;
+}
+.footer h3 {
+    color: #e0e1d5;
+}
+
+.logo__footer {
+    display: flex;
+    height: 60px;
+}

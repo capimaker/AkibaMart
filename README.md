@@ -2,7 +2,11 @@
 
 
 
+<<<<<<< HEAD
 <img src="../../Frontend/AkibaMart/src/assets/fondo.png" alt="Fondo manga" width="700"/>
+=======
+<img src="./src/assets/fondo.png" alt="Fondo manga" width="700"/>
+>>>>>>> 3029604b6e68227d0a0d449062bb4e5e3f8ceac6
 
 **AkibaMart** es un e-commerce centrado en la venta de comics manga de distintas categorías. El proyecto cuenta con una aplicación frontend desarrollada en React y un backend completo en Node.js con Express y MongoDB. La aplicación cuenta con registro y autenticación de usuarios, manejo de productos, categorías y filtros, carrito de compra y pedidos.
 
@@ -170,4 +174,8 @@ Muestra mensajes de error, logs de estado, advertencias y cualquier console.log(
 Esperamos que disfrutes de la compra de tus comics manga favoritos con **AkibaMart**🥷 Cuéntanos cómo ha sido tu experiencia y si hay algo que podamos mejorar ¡Nos vemos pronto!
 
 
+<<<<<<< HEAD
 <img src="../../Frontend/AkibaMart/src/assets/despedida.png" alt="Fondo manga" width="700"/>
+=======
+<img src="./src/assets/despedida.png" alt="Fondo manga" width="700"/>
+>>>>>>> 3029604b6e68227d0a0d449062bb4e5e3f8ceac6
